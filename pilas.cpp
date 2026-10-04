@@ -19,7 +19,6 @@ TDAPila inicializaPila(TDAPila x){
    return x;
 }
 void imprimePila(TDAPila x){
-    cout<<endl;
     for(int i=0; i<MAX;i++)
         cout<<x.elementos[i]<<", ";
 }
@@ -27,7 +26,7 @@ void imprimePila(TDAPila x){
 bool pilaVacia(TDAPila x){
     bool valor=false;
     if(x.tope==-1)
-        valor==true;
+        valor=true;
     return valor;
 }
 
@@ -38,10 +37,12 @@ bool pilaLlena(TDAPila x){
     return valor;
 }
 
-TDAPila pushPila(TDAPila x,char dato){
-   
+TDAPila pushPila(TDAPila x){
+    char dato;
+    cout<<"Ingrese Un Valor: ";
+    cin>>dato;
     if(pilaLlena(x)){
-        cout<<"Desbordamiento de Pila\n";
+        cout<<"\nDesbordamiento de Pila\n";
     }
     else{
         x.tope++;
@@ -51,7 +52,6 @@ TDAPila pushPila(TDAPila x,char dato){
 }
 
 TDAPila popPila(TDAPila x){
-   
     if(pilaVacia(x))
         cout<<"Subdesbordamiento de Pila\n";
     else{
@@ -64,21 +64,32 @@ TDAPila popPila(TDAPila x){
 
 int main(){
     TDAPila x;
+    int Opcion;
     x=inicializaPila(x);
-    x=pushPila(x,'a');
-    x=pushPila(x,'b');
-    x=pushPila(x,'c');
-    x=pushPila(x,'d');
-    x=pushPila(x,'e');
-    x=popPila(x);
-    x=popPila(x);
-    x=pushPila(x,'f');
-    x=pushPila(x,'x');
-    x=popPila(x);
-    x=pushPila(x,'y');
-    x=pushPila(x,'z');
-
-    imprimePila(x);
+    do{
+        cout<<"\nEliga Una Opcion: \n 1. Agregar Elemento (Push), \n 2. Eliminar Un Elemento (Pop). \n 3. Imprimir Pila. \n 4. Salir Del Programa. \n Eliga Una Opcion: ";
+        cin >> Opcion;
+        switch (Opcion){
+        case 1:
+            cout<<"\nEligio La Opcion 1: Agregar Elemento (Push). \n";
+            x=pushPila(x);
+            break;
+        case 2:
+            cout<<"\nEligio La Opcion 2: Eliminar Un Elemento (Pop). \n";
+            x=popPila(x);
+            break;
+        case 3: 
+            cout<<"\nEligio La Opcion 2: Imprimir Pila. \n";
+            imprimePila(x);
+            break;  
+        case 4:
+            cout<<"\nEligio La Opcion 3: Salir Del Programa. \nHasta Luego ;) \n ";
+            imprimePila(x);
+            return 0;
+        default:
+            cout<<"\nOpcion No Valida... \nIntentalo De Nuevo :( \n";
+            break;
+        }
+    }while (Opcion!=3);
     return 1;
-   
 }
